@@ -1,0 +1,41 @@
+#main_header {
+  /* text-align: center; */
+
+  display: grid;
+  place-items: center;
+}
+
+.button {
+  background-color: lightslategray;
+  border: solid 1px black;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-table;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#result {
+  text-align: center;
+}
+
+#event {
+  text-align: center;
+}
+
+pre {
+  background-color: lightslategray;
+  border: 1px solid black;
+  color: white;
+  padding: 10px;
+  word-wrap: break-word;
+  white-space: pre-id= pre-wrap;
+}
+
+#footer {
+  text-align: center;
+  font-style: italic;
+}

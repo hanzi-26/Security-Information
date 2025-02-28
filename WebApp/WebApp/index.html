@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Keycloak Uebung</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="https://localhost:8443/js/keycloak.js"></script>
+    <script src="./js/keycloak.js"></script>
+</head>
+
+<body onload="init()">
+    <div id="main_header">
+        <img src="./img/keycloak_logo_200px.svg" alt="Keycloak Logo" />
+        <h1>Übung</h1>
+    </div>
+
+    <div>
+        <div>
+            <button class="button" onclick="login('offline_access profile')">Login</button>
+            <button class="button" onclick="keycloak.register()">Register</button>
+            <button class="button" onclick="keycloak.accountManagement()">Account</button>
+            <span id="logout" hidden>
+                <button class="button" onclick="logout()">Logout</button>
+            </span>
+        </div>
+        <div id="userInfo" hidden>
+            <button class="button" onclick="loadUserProfile()">Load Profile</button>
+            <button class="button" onclick="loadUserInfo()">Load User Info</button>
+        </div>
+        <div id="tokenInfo" hidden>
+            <button class="button" onclick="output(keycloak.tokenParsed)">Show Token</button>
+            <button class="button" onclick="refreshToken(9999)">Refresh Token</button>
+            <button class="button" onclick="output(keycloak.refreshTokenParsed)">Show Refresh Token</button>
+            <button class="button" onclick="output(keycloak.idTokenParsed)">Show ID Token</button>
+            <button class="button" onclick="showExpires()">Show Expires</button>
+            <button class="button" onclick="output(keycloak)">Show Details</button>
+        </div>
+        <div>
+            <button class="button" onclick="output(keycloak.createLoginUrl())">Show Login URL</button>
+            <button class="button" onclick="output(keycloak.createRegisterUrl())">Show Register URL</button>
+            <button class="button" onclick="output(keycloak.createAccountUrl())">Show Account URL</button>
+            <button class="button" onclick="output(keycloak.createLogoutUrl())">Show Logout URL</button>
+        </div>
+    </div>
+
+    <h2 id="event">Events</h2>
+    <pre id="events"></pre>
+
+    <h2 id="result">Result</h2>
+    <pre id="output"></pre>
+
+    <footer id="footer">Copyright eHealth Labor OTH Regensburg</footer>
+</body>
+</html>
