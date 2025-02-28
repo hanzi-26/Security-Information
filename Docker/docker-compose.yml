@@ -1,0 +1,55 @@
+version: '3.9'
+
+services:
+
+  postgresql:
+    image: docker.io/postgres:10
+    container_name: postgresql
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=Pa55w0rd
+    volumes:
+      - ./postgresql-data/:/var/lib/postgresql/data/
+      - ./db-init.sh:/docker-entrypoint-initdb.d/db-init.sh
+    # networks:
+    #   - backend
+    ports:
+      - 5432:5432
+
+  keycloak:
+    image: keycloak/keycloak:latest
+    container_name: keycloak
+    restart: unless-stopped
+    environment:
+      - KC_HTTP_ENABLED=true
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=Pa55w0rd
+#      - KC_LOG_LEVEL=error
+      - KC_HOSTNAME=localhost
+      - KC_HOSTNAME_STRICT=false
+      - KC_HOSTNAME_STRICT_HTTPS=false
+      - KC_HOSTNAME_STRICT_BACKCHANNEL=false
+      - KC_HTTPS_CLIENT_AUTH=request
+    volumes:
+      - ./:/etc/x509/https/
+    depends_on:
+      - postgresql
+    # networks:
+    #   - backend
+    #   - frontend
+    ports:
+      - 8080:8080
+      - 8443:8443
+
+volumes:
+  postgresql-data:
+
+# networks:
+#   backend:
+#     external: false
+#     internal: true
+#     name: backnet
+#   frontend:
+#     external: false
+#     internal: false
+#     name: frontnet
